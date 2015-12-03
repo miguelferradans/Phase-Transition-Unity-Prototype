@@ -25,6 +25,7 @@ public class TransformState : MonoBehaviour {
     public bool m_gas = false;
 
     private bool m_canTransform = true;
+    private bool m_canContinueTransformed = true;
 
     void Start()
     {
@@ -74,6 +75,19 @@ public class TransformState : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.R)) //"R" key = recharge energy
             SendMessage("RegenMaxEnergy", SendMessageOptions.RequireReceiver);
+
+
+
+        if (m_gas || m_water)
+            SendMessage("ConsumeTime", SendMessageOptions.RequireReceiver);
+        else
+            SendMessage("RecoverTime", SendMessageOptions.RequireReceiver);
+
+        if (m_canContinueTransformed == false)
+        {
+            Solid();
+            m_canContinueTransformed = true;
+        }
     }
 
     //------------------------------------------METHODS-----------------------------------------------------
@@ -147,5 +161,18 @@ public class TransformState : MonoBehaviour {
     void EnergyLeft(bool value)
     {
         m_canTransform = value;
+    }
+
+    /// <summary>
+    ///     This method is used to set if there is any time left to stay transformed 
+    /// </summary>
+    /// <param name="value">
+    ///     It's a bool that sets if theres time left.
+    ///         No --> false
+    ///         Yes --> true
+    /// </param>
+    void TimeLeft(bool value)
+    {
+        m_canContinueTransformed = value;
     }
 }
