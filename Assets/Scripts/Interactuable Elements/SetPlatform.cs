@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OpenDoor : MonoBehaviour {
+public class SetPlatform : MonoBehaviour
+{
 
     [SerializeField]
-    private GameObject m_door = null;
+    private GameObject m_platform = null;
 
     void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Player")
         {
-            m_door.gameObject.SetActive(false);
+            m_platform.SendMessage("PlatformMoves", true);
             gameObject.SetActive(false);
         }
     }
