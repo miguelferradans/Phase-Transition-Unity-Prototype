@@ -199,7 +199,7 @@ Prefab:
     - target: {fileID: 11498462, guid: 0312acb127280a5469612210ad28b737, type: 2}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 666529069}
+      objectReference: {fileID: 1892972329}
     - target: {fileID: 11498462, guid: 0312acb127280a5469612210ad28b737, type: 2}
       propertyPath: _finalDoor
       value: 
@@ -219,10 +219,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 151264, guid: d602775b5948ed54c9277ad815d240db, type: 2}
   m_PrefabInternal: {fileID: 1990880630}
---- !u!1 &666529069 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 194056, guid: d90026b0e11cf0349866b0ee20ac81c0, type: 2}
-  m_PrefabInternal: {fileID: 1324190439}
 --- !u!114 &817019124 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11496168, guid: 968b8f6a601e26b4db2d075f72cfd1b4,
@@ -310,23 +306,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22496372, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22496372, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22461442, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22461442, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22461442, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 968b8f6a601e26b4db2d075f72cfd1b4, type: 2}
@@ -378,6 +374,14 @@ Prefab:
       propertyPath: _energyBar
       value: 
       objectReference: {fileID: 817019124}
+    - target: {fileID: 11431596, guid: d90026b0e11cf0349866b0ee20ac81c0, type: 2}
+      propertyPath: _energyBar
+      value: 
+      objectReference: {fileID: 817019124}
+    - target: {fileID: 11453710, guid: d90026b0e11cf0349866b0ee20ac81c0, type: 2}
+      propertyPath: _timeBar
+      value: 
+      objectReference: {fileID: 1777194881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d90026b0e11cf0349866b0ee20ac81c0, type: 2}
   m_IsPrefabParent: 0
@@ -387,6 +391,10 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 922758347}
   m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1 &1892972329 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 172232, guid: d90026b0e11cf0349866b0ee20ac81c0, type: 2}
+  m_PrefabInternal: {fileID: 1324190439}
 --- !u!1001 &1990880630
 Prefab:
   m_ObjectHideFlags: 0

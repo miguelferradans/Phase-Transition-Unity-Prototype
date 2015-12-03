@@ -9,20 +9,16 @@ public class TransformState : MonoBehaviour {
     ParticleSystem m_particlesGas = null;
     ParticleSystem m_particlesWater = null;
 
-    [Header("Materials")]
-    [SerializeField]
-    private Material m_solidMat = null;
-    [SerializeField]
-    private Material m_waterMat = null;
-    [SerializeField]
-    private Material m_gasMat = null;
-
     [HideInInspector]
     public bool m_water = false;
     [HideInInspector]
     public bool m_solid = true;
     [HideInInspector]
     public bool m_gas = false;
+
+    [Header("Options")]
+    [SerializeField]
+    private bool consumesEnergySolid = false;
 
     private bool m_canTransform = true;
     private bool m_canContinueTransformed = true;
@@ -31,9 +27,7 @@ public class TransformState : MonoBehaviour {
     {
         m_render = GetComponent<MeshRenderer>();
         m_particlesGas = this.transform.Find("Gas").GetComponent<ParticleSystem>();
-        m_particlesGas.enableEmission = false;
         m_particlesWater = this.transform.Find("Water").GetComponent<ParticleSystem>();
-        m_particlesWater.enableEmission = false;
         m_render.enabled = true;
     }
 
@@ -101,11 +95,11 @@ public class TransformState : MonoBehaviour {
         m_water = false;
         m_solid = true;
         m_gas = false;
-        m_render.material = m_solidMat;
         m_render.enabled = true;
-        m_particlesGas.enableEmission = false;
-        m_particlesWater.enableEmission = false;
-        //EnergyTransformation();
+        m_particlesGas.Stop();
+        m_particlesWater.Stop();
+        if(consumesEnergySolid)
+            EnergyTransformation();
     }
 
     /// <summary>   Water()
@@ -118,10 +112,9 @@ public class TransformState : MonoBehaviour {
         m_water = true;
         m_solid = false;
         m_gas = false;
-        m_render.material = m_waterMat;
         m_render.enabled = false;
-        m_particlesGas.enableEmission = false;
-        m_particlesWater.enableEmission = true;
+        m_particlesGas.Stop();
+        m_particlesWater.Play();
         EnergyTransformation();
     }
 
@@ -135,10 +128,9 @@ public class TransformState : MonoBehaviour {
         m_gas = true;
         m_solid = false;
         m_water = false;
-        m_render.material = m_gasMat;
         m_render.enabled = false;
-        m_particlesGas.enableEmission = true;
-        m_particlesWater.enableEmission = false;
+        m_particlesGas.Play();
+        m_particlesWater.Stop();
         EnergyTransformation();
     }
 
