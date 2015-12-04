@@ -19,6 +19,14 @@ public class TransformState : MonoBehaviour {
     [Header("Options")]
     [SerializeField]
     private bool consumesEnergySolid = false;
+    [SerializeField]
+    private float _radiusColliderWater = 1.0f;
+    [SerializeField]
+    private float _radiusColliderGas = 1.0f;
+    [SerializeField]
+    private float _radiusColliderSolid = 1.0f;
+
+    private SphereCollider _sphereCollider= null;
 
     private bool m_canTransform = true;
     private bool m_canContinueTransformed = true;
@@ -29,6 +37,7 @@ public class TransformState : MonoBehaviour {
         m_particlesGas = this.transform.Find("Gas").GetComponent<ParticleSystem>();
         m_particlesWater = this.transform.Find("Water").GetComponent<ParticleSystem>();
         m_render.enabled = true;
+        _sphereCollider = FindObjectOfType<SphereCollider>();
     }
 
     void Update () {
@@ -98,6 +107,7 @@ public class TransformState : MonoBehaviour {
         m_render.enabled = true;
         m_particlesGas.Stop();
         m_particlesWater.Stop();
+        _sphereCollider.radius = _radiusColliderSolid;
         if(consumesEnergySolid)
             EnergyTransformation();
     }
@@ -115,6 +125,7 @@ public class TransformState : MonoBehaviour {
         m_render.enabled = false;
         m_particlesGas.Stop();
         m_particlesWater.Play();
+        _sphereCollider.radius = _radiusColliderWater;
         EnergyTransformation();
     }
 
@@ -131,6 +142,7 @@ public class TransformState : MonoBehaviour {
         m_render.enabled = false;
         m_particlesGas.Play();
         m_particlesWater.Stop();
+        _sphereCollider.radius = _radiusColliderGas;
         EnergyTransformation();
     }
 
