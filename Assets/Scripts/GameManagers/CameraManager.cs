@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour {
         _player = GameObject.FindGameObjectWithTag("Player");
         _trigger = GameObject.FindGameObjectsWithTag("Lever");
         transform.parent = _player.transform;
+        transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, transform.position.z);
 	}
 
     void ChangeCameraTo(GameObject obj)
@@ -23,11 +24,13 @@ public class CameraManager : MonoBehaviour {
         if (obj.tag == "Player")
         {
             _player.SendMessage("PlayerMoves", true, SendMessageOptions.RequireReceiver);
+            _player.SendMessage("EnergyLeft", true, SendMessageOptions.RequireReceiver);
             Debug.Log("Player can move");
         }
         else
         {
             _player.SendMessage("PlayerMoves", false, SendMessageOptions.RequireReceiver);
+            _player.SendMessage("EnergyLeft", false, SendMessageOptions.RequireReceiver);
         }
     }
 

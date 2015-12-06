@@ -9,6 +9,7 @@ public class Force : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             coll.SendMessage("setGasVelocity", _velocity, SendMessageOptions.RequireReceiver);
+            Debug.Log(coll.tag);
         }
     }
 
