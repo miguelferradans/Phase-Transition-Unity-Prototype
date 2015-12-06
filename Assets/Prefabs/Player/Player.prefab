@@ -176,13 +176,14 @@ MonoBehaviour:
   m_maxRightVelocityGas: .25
   m_maxLeftVelocityGas: -.25
   m_StepVelocityGas: .0500000007
-  m_UpwardsGravityModifier: 1.29999995
+  m_UpwardsGravityModifier: 1.04999995
   m_jumpForce: 30
   m_moveInAir: 1
   m_grounded: 0
   m_jumping: 0
   m_collidingRight: 0
   m_collidingLeft: 0
+  _canMove: 1
 --- !u!114 &11449956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,7 +253,7 @@ ParticleSystem:
   looping: 1
   prewarm: 1
   playOnAwake: 0
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:

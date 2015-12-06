@@ -22,6 +22,7 @@ public class MovePlatforme : MonoBehaviour {
         _direction = _finalTransform.position - _initialTransform.position;
         _direction.Normalize();
         _directionAux = _direction;
+        transform.position = _initialTransform.position;
     }
 
     void Update()
