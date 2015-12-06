@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float m_velocityGas = 0.0f;
     [SerializeField]
+    private float m_maxVelocityGas = 3.0f;
+    [SerializeField]
     private float m_maxRightVelocityGas = 3.0f;
     [SerializeField]
     private float m_maxLeftVelocityGas = -3.0f;
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
     public bool m_collidingRight = false;
     //[HideInInspector]
     public bool m_collidingLeft = false;
+    [SerializeField]
+    private bool _canMove = true;
 
     private Rigidbody m_rg = null;
 
@@ -93,14 +97,17 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        if (m_transform.m_solid)
-            SolidMovement();
-        else if (m_transform.m_water)
-            WaterMovement();
-        else if (m_transform.m_gas)
-            GasMovement();
-        MoveCarriedObject();
+	void FixedUpdate () {
+        if (_canMove)
+        {
+            if (m_transform.m_solid)
+                SolidMovement();
+            else if (m_transform.m_water)
+                WaterMovement();
+            else if (m_transform.m_gas)
+                GasMovement();
+            MoveCarriedObject();
+        }
 	}
 
 
@@ -160,6 +167,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void GasMovement()
     {
+        ControlGasMovement();
         m_rg.AddForce(Physics.gravity*-m_rg.mass*m_UpwardsGravityModifier);
 
         if (m_velocityGas != 0)
@@ -167,20 +175,30 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && !m_collidingRight && MoveInAir() && (m_velocityGas <= m_maxRightVelocityGas))//Right
         {
-            Debug.Log("Adding right momentum");
             m_velocityGas += m_StepVelocityGas;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && !m_collidingLeft && MoveInAir() && (m_velocityGas >= m_maxLeftVelocityGas))//Left
         {
-            Debug.Log("Adding left momentum");
             m_velocityGas -= m_StepVelocityGas;
         }
+    }
+    void ControlGasMovement()
+    {
+        float currentVelocity = m_rg.velocity.x;
+        if (currentVelocity > m_maxVelocityGas)
+            m_rg.velocity = new Vector3(m_maxVelocityGas, m_rg.velocity.y, m_rg.velocity.z);
+        else if (currentVelocity < -m_maxVelocityGas)
+            m_rg.velocity = new Vector3(-m_maxVelocityGas, m_rg.velocity.y, m_rg.velocity.z);
     }
 
     void resetGasVelocity()
     {
         m_velocityGas = 0.0f;
+    }
+    void setGasVelocity(float vel)
+    {
+        m_velocityGas = vel;
     }
 
     bool MoveInAir()
@@ -195,6 +213,10 @@ public class PlayerMovement : MonoBehaviour {
                 return true;
         }
     }
+    void PlayerMoves(bool var)
+    {
+        _canMove = var;
+    }
 
     void SetCarriedObject(GameObject obj)
     {
@@ -204,7 +226,6 @@ public class PlayerMovement : MonoBehaviour {
     {
         m_carriedObject = null;
     }
-
     void MoveCarriedObject()
     {
         if (m_carriedObject != null)

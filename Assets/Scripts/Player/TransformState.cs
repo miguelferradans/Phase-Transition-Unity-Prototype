@@ -37,7 +37,8 @@ public class TransformState : MonoBehaviour {
         m_particlesGas = this.transform.Find("Gas").GetComponent<ParticleSystem>();
         m_particlesWater = this.transform.Find("Water").GetComponent<ParticleSystem>();
         m_render.enabled = true;
-        _sphereCollider = FindObjectOfType<SphereCollider>();
+        _sphereCollider = gameObject.GetComponent<SphereCollider>();
+        
     }
 
     void Update () {

@@ -11,9 +11,9 @@ public class InputManager : MonoBehaviour {
         {
             SendMessage("Restart", SendMessageOptions.RequireReceiver);
         }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.LoadLevel("start");
+        }
 	}
-
-
-           
-
 }
