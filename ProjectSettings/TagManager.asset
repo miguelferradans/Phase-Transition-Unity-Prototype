@@ -9,6 +9,8 @@ TagManager:
   - Lever
   - Hand
   - Key
+  - Waypoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
