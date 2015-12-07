@@ -11,6 +11,7 @@ TagManager:
   - Key
   - Waypoint
   - Enemy
+  - BreakableWall
   layers:
   - Default
   - TransparentFX

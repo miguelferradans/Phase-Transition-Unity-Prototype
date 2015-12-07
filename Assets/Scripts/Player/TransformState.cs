@@ -111,6 +111,7 @@ public class TransformState : MonoBehaviour {
         _sphereCollider.radius = _radiusColliderSolid;
         if(consumesEnergySolid)
             EnergyTransformation();
+        SendMessage("setSolid", SendMessageOptions.RequireReceiver);
     }
 
     /// <summary>   Water()
@@ -128,6 +129,7 @@ public class TransformState : MonoBehaviour {
         m_particlesWater.Play();
         _sphereCollider.radius = _radiusColliderWater;
         EnergyTransformation();
+        SendMessage("setWater", SendMessageOptions.RequireReceiver);
     }
 
     /// <summary>   Gas()
@@ -145,6 +147,7 @@ public class TransformState : MonoBehaviour {
         m_particlesWater.Stop();
         _sphereCollider.radius = _radiusColliderGas;
         EnergyTransformation();
+        SendMessage("setGas", SendMessageOptions.RequireReceiver);
     }
 
     /// <summary>   EnergyTransformation()

@@ -88,4 +88,26 @@
 /// <sumary>   03/12/2015   Adrián Jorge Pérez de Muniain
 ///     
 /// </sumary>
-
+//
+/// <sumary>   07/12/2015   Fernando Alonso Cadenas
+///
+///  1 Created SetPowerUp:
+///     Script that, attached to a trigger, gives the player a powerUp.
+///     It is the same script for the three PowerUps so we don't have to
+///     use 3 different scripts.
+///     Notice that this right now it is differently done from the thought
+///     implementation, as right now it automatically gives the power-up
+///     instead of being and object and having to activate it.
+///  2 Created UsePowerUp:
+///     Uses the active PowerUp.
+///     Right now only the Explosion is implemented.
+///     It searches for breakable objects (from different types so the effect
+///     is cooler) in the function AreaDestroy. Right now it only destroys
+///     Breakable Walls.
+///  3 Modified TransformState:
+///     Whenever the player transforms, sends a message of the new status so the
+///     PowerUp is correctly used.
+///  4 Created scripts, materials, prefabs... related to the PowerUps
+/// 
+/// </sumary>
+//
