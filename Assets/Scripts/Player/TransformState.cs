@@ -8,6 +8,8 @@ public class TransformState : MonoBehaviour {
     MeshRenderer m_render = null;
     ParticleSystem m_particlesGas = null;
     ParticleSystem m_particlesWater = null;
+    ParticleSystem m_particlesGasVeneno = null;
+    UsePowerup m_powerupScriptAccess = null;
 
     [HideInInspector]
     public bool m_water = false;
@@ -36,8 +38,10 @@ public class TransformState : MonoBehaviour {
         m_render = GetComponent<MeshRenderer>();
         m_particlesGas = this.transform.Find("Gas").GetComponent<ParticleSystem>();
         m_particlesWater = this.transform.Find("Water").GetComponent<ParticleSystem>();
+        m_particlesGasVeneno = m_particlesGas.transform.Find("VenenoGas").GetComponent<ParticleSystem>();
         m_render.enabled = true;
         _sphereCollider = gameObject.GetComponent<SphereCollider>();
+        m_powerupScriptAccess = gameObject.GetComponent<UsePowerup>();
         
     }
 
@@ -106,6 +110,7 @@ public class TransformState : MonoBehaviour {
         m_solid = true;
         m_gas = false;
         m_render.enabled = true;
+        m_particlesGasVeneno.Stop();
         m_particlesGas.Stop();
         m_particlesWater.Stop();
         _sphereCollider.radius = _radiusColliderSolid;
@@ -145,6 +150,12 @@ public class TransformState : MonoBehaviour {
         m_render.enabled = false;
         m_particlesGas.Play();
         m_particlesWater.Stop();
+
+        if (m_powerupScriptAccess.m_PoisonActive)
+            m_particlesGasVeneno.Play();
+        else
+            m_particlesGasVeneno.Stop();
+
         _sphereCollider.radius = _radiusColliderGas;
         EnergyTransformation();
         SendMessage("setGas", SendMessageOptions.RequireReceiver);

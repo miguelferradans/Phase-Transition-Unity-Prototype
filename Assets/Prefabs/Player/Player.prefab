@@ -51,6 +51,7 @@ GameObject:
   - 114: {fileID: 11471062}
   - 114: {fileID: 11431596}
   - 114: {fileID: 11453710}
+  - 114: {fileID: 11479906}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -228,6 +229,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_onTop: 0
+--- !u!114 &11479906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74feba3d767bf1f4a9fefdb02557dba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PoisonActive: 0
+  m_ExplActive: 0
+  m_CorrosionActive: 0
+  m_Explosion: {fileID: 0}
+  m_ExplosionRadius: 5
+  m_WallExplosion: {fileID: 0}
+  m_PoisonMaterial: {fileID: 2100000, guid: 893960384de673345a82517892b28bc7, type: 2}
+  m_water: 0
+  m_solid: 1
+  m_gas: 0
 --- !u!135 &13501100
 SphereCollider:
   m_ObjectHideFlags: 1

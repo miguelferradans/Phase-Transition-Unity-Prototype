@@ -5,11 +5,11 @@ public class UsePowerup : MonoBehaviour {
 
     [Header ("Booleans")]
     [SerializeField]
-    private bool m_PoisonActive = false;
+    public bool m_PoisonActive = false;
     [SerializeField]
-    private bool m_ExplActive = false;
+    public bool m_ExplActive = false;
     [SerializeField]
-    private bool m_CorrosionActive = false;
+    public bool m_CorrosionActive = false;
 
     [Header("Explosion")]
     [SerializeField]
@@ -29,7 +29,16 @@ public class UsePowerup : MonoBehaviour {
     public bool m_solid = true;
     [HideInInspector]
     public bool m_gas = false;
-    
+
+    private ParticleSystem m_particlesGas = null;
+    private ParticleSystem m_particlesWater = null;
+
+
+    void Start()
+    {
+        m_particlesGas = this.transform.Find("Gas").GetComponent<ParticleSystem>();
+        m_particlesWater = this.transform.Find("Water").GetComponent<ParticleSystem>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +51,6 @@ public class UsePowerup : MonoBehaviour {
                 if (m_PoisonActive == true)
                 {
                     usePUPoison();
-                    m_PoisonActive = false;
                 }
                 else if (m_ExplActive == true)
                 {
