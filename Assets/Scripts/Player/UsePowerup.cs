@@ -18,6 +18,7 @@ public class UsePowerup : MonoBehaviour {
 
     private ParticleSystem m_particlesPoison = null;
     private ParticleSystem m_particlesExplosion = null;
+    private SphereCollider m_colliderExplosion = null;
     private TransformState m_playerState = null;
 
 
@@ -25,9 +26,10 @@ public class UsePowerup : MonoBehaviour {
     {
         m_particlesPoison = this.transform.Find("Poison").GetComponent<ParticleSystem>();
         m_particlesPoison.Stop();
+
         m_particlesExplosion = this.transform.Find("Explosive").GetComponent<ParticleSystem>();
         m_particlesExplosion.Stop();
-
+        m_colliderExplosion = m_particlesExplosion.gameObject.GetComponent<SphereCollider>();
 
         m_playerState = transform.GetComponent<TransformState>();
     }
@@ -70,6 +72,15 @@ public class UsePowerup : MonoBehaviour {
         {
             m_particlesExplosion.Play();
             _usingPower = true;
+            Collider[] objectsInRange = Physics.OverlapSphere(transform.position, m_colliderExplosion.radius);
+            foreach (Collider coll in objectsInRange)
+            {
+                if (coll.tag == "BreakableWall" || coll.tag == "Enemy")
+                {
+                    //Instantiate(m_WallExplosion, col.gameObject.transform.position, col.gameObject.transform.rotation);
+                    coll.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
