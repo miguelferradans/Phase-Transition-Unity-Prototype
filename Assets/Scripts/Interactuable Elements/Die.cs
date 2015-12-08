@@ -7,8 +7,16 @@ public class Die : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            InformationLevel manager = FindObjectOfType<InformationLevel>();
-            manager.SendMessage("Restart");
+            UsePowerup playerPowers = coll.gameObject.GetComponent<UsePowerup>();
+            if (!playerPowers._usingPower)
+            {
+                InformationLevel manager = FindObjectOfType<InformationLevel>();
+                manager.SendMessage("Restart");
+            }
+            else if (playerPowers.m_PoisonActive)
+            {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 }

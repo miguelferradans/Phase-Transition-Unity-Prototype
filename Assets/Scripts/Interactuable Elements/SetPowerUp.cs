@@ -3,21 +3,24 @@ using System.Collections;
 
 public class SetPowerUp : MonoBehaviour
 {
+    [System.Serializable]
+    public enum powerUp
+    {
+        Poison, Explosive, Corrosive
+    }
+
+    public powerUp m_power;
+
     [SerializeField]
-    public bool m_PoisonPowerup = false;
-    [SerializeField]
-    public bool m_ExplosionPowerup = false;
-    [SerializeField]
-    public bool m_CorrosionPowerup = false;
+    private bool oneUse = false;
 
     void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Player")
         {
-            coll.gameObject.SendMessage("setPoison", m_PoisonPowerup, SendMessageOptions.RequireReceiver);
-            coll.gameObject.SendMessage("setExplosion", m_ExplosionPowerup, SendMessageOptions.RequireReceiver);
-            coll.gameObject.SendMessage("setCorrosion", m_CorrosionPowerup, SendMessageOptions.RequireReceiver);
-            this.gameObject.SetActive(false);
+            coll.SendMessage("SetPower", m_power.ToString(), SendMessageOptions.RequireReceiver);
+            if(oneUse)
+                this.gameObject.SetActive(false);
         }
     }
 }
