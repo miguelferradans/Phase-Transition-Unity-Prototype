@@ -20,17 +20,22 @@ public class CameraManager : MonoBehaviour {
 
     void SetCameraPositionTo(GameObject obj)
     {
+        Rigidbody playerRigidbody = _player.GetComponent<Rigidbody>();
         transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, transform.position.z);
         if (obj.tag == "Player")
         {
             _player.SendMessage("PlayerMoves", true, SendMessageOptions.RequireReceiver);
             _player.SendMessage("EnergyLeft", true, SendMessageOptions.RequireReceiver);
-            Debug.Log("Player can move");
+            playerRigidbody.useGravity = true;
         }
         else
         {
             _player.SendMessage("PlayerMoves", false, SendMessageOptions.RequireReceiver);
             _player.SendMessage("EnergyLeft", false, SendMessageOptions.RequireReceiver);
+            
+            playerRigidbody.velocity = Vector3.zero;
+            playerRigidbody.angularVelocity = Vector3.zero;
+            playerRigidbody.useGravity = false;
         }
     }
 

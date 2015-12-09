@@ -9,13 +9,11 @@ using UnityEngine;
 using System.Collections;
 
 public class GoNextLevel : MonoBehaviour {
-    [SerializeField]
-    private GameObject _gameManager = null;
 
 	void OnTriggerEnter(Collider coll){
         if(coll.gameObject.tag == "Key")
         {
-            _gameManager.SendMessage("NextLevel", SendMessageOptions.RequireReceiver);
+            GameObject.FindGameObjectWithTag("GameManager").SendMessage("NextLevel", SendMessageOptions.RequireReceiver);
         }
     }
 }

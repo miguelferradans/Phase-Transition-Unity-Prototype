@@ -15,12 +15,6 @@ public class InformationLevel : MonoBehaviour {
     [SerializeField]
     private Transform _spawnPointPlayer = null;
 
-    [Header("")]    
-    [SerializeField]
-    private GameObject _finalDoor = null;
-    [SerializeField]
-    private Transform _spawnPointFinalDoor = null;
-
     [Header("")]
     [SerializeField]
     private string _levelName = null;
@@ -30,7 +24,6 @@ public class InformationLevel : MonoBehaviour {
 
 	void Start () {
         _player.transform.position = _spawnPointPlayer.position;
-        _finalDoor.transform.position = _spawnPointFinalDoor.position;
 	}
 
     //------------------------------------------METHODS-----------------------------------------------------

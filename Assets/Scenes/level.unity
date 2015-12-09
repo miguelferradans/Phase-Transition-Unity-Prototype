@@ -176,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454238, guid: 7cea70fd84def3e428bbacc9f7e27d85, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .107921474
+      value: .0112931579
       objectReference: {fileID: 0}
     - target: {fileID: 454238, guid: 7cea70fd84def3e428bbacc9f7e27d85, type: 2}
       propertyPath: m_LocalRotation.y
@@ -188,7 +188,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454238, guid: 7cea70fd84def3e428bbacc9f7e27d85, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .99415952
+      value: .999936223
       objectReference: {fileID: 0}
     - target: {fileID: 454238, guid: 7cea70fd84def3e428bbacc9f7e27d85, type: 2}
       propertyPath: m_RootOrder
@@ -246,6 +246,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11493296, guid: 05952971e6449a045a026a6338830a7a, type: 2}
       propertyPath: m_power
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493296, guid: 05952971e6449a045a026a6338830a7a, type: 2}
+      propertyPath: oneUse
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1816,6 +1820,14 @@ Prefab:
       propertyPath: _finalDoor
       value: 
       objectReference: {fileID: 495399556}
+    - target: {fileID: 11498462, guid: 0312acb127280a5469612210ad28b737, type: 2}
+      propertyPath: _levelName
+      value: level
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498462, guid: 0312acb127280a5469612210ad28b737, type: 2}
+      propertyPath: _nextLevelName
+      value: level2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0312acb127280a5469612210ad28b737, type: 2}
   m_IsPrefabParent: 0

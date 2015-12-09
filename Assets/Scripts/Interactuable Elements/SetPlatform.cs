@@ -18,9 +18,6 @@ public class SetPlatform : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
-            Rigidbody playerRigidbody = coll.GetComponent<Rigidbody>();
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.angularVelocity = Vector3.zero;
             StartCoroutine(CutsceneCoroutine(coll));
         }
     }
