@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2302952}
   - 114: {fileID: 11424414}
   m_Layer: 0
-  m_Name: ExplPowerUp
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.8499999, y: 1.44000006, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,7 +49,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -73,9 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e61db32016f3e41a827f196da20085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PoisonPowerup: 0
-  m_ExplosionPowerup: 1
-  m_CorrosionPowerup: 0
+  m_power: 0
+  oneUse: 1
 --- !u!136 &13613520
 CapsuleCollider:
   m_ObjectHideFlags: 1

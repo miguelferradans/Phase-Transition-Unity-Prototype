@@ -56,8 +56,11 @@ public class UsePowerup : MonoBehaviour {
             DeletePowers();
         }
 	}
+    //------------------------------------------METHODS-----------------------------------------------------
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     void Poison()
     {
         if(!_usingPower){
@@ -66,13 +69,16 @@ public class UsePowerup : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Explosive()
     {
         if (!_usingPower)
         {
             m_particlesExplosion.Play();
             _usingPower = true;
-            Collider[] objectsInRange = Physics.OverlapSphere(transform.position, m_colliderExplosion.radius);
+            Collider[] objectsInRange = Physics.OverlapSphere(transform.position, m_ExplosionRadius);
             foreach (Collider coll in objectsInRange)
             {
                 if (coll.tag == "BreakableWall" || coll.tag == "Enemy")
@@ -84,6 +90,9 @@ public class UsePowerup : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void Corrosive()
     {
         if (!_usingPower)
@@ -92,6 +101,12 @@ public class UsePowerup : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="power">
+    /// 
+    /// </param>
     void SetPower(string power){
         if (power == "Poison")
             m_PoisonActive = true;
@@ -100,6 +115,10 @@ public class UsePowerup : MonoBehaviour {
         else if (power == "Corrosive")
             m_CorrosionActive = true;
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     void DeletePowers()
     {
         m_particlesPoison.Stop();
