@@ -35,13 +35,9 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Booleans")]
     [SerializeField]
     private bool m_moveInAir = true;
-    //[HideInInspector]
     public bool m_grounded = false;
-    //[HideInInspector]
-    public bool m_jumping = false;
-    //[HideInInspector]
+    public bool _jumped = false;
     public bool m_collidingRight = false;
-    //[HideInInspector]
     public bool m_collidingLeft = false;
     [SerializeField]
     private bool _canMove = true;
@@ -52,51 +48,23 @@ public class PlayerMovement : MonoBehaviour {
 
     private GameObject m_carriedObject = null;
 
+    [SerializeField]
+    private float _offSet = 0.05f;
+
+    //---------------------------------------------START----------------------------------------------------
     void Start()
     {
         m_transform = GetComponent<TransformState>();
         m_rg = GetComponent<Rigidbody>();
     }
 
-    void OnCollisionEnter(Collision coll)
+    //---------------------------------------------UPDATE---------------------------------------------------
+    void Update()
     {
-        if (coll.gameObject.tag == "Floor")
-        {
-            //If the collider is at the bot
-            float distance = transform.position.y - coll.transform.position.y;
-            if (distance >= 0)
-            {
-                m_grounded = true;
-                m_jumping = false;
-            }
-        }
-
-        if(coll.gameObject.tag == "Wall")
-        {
-            float distance = transform.position.x - coll.transform.position.x;
-            //If the collider is at the right
-            if (distance <= 0)
-                m_collidingRight = true;
-            else if( distance >= 0)
-                m_collidingLeft = true;
-
-        }
+        CollisionPlayerManager();
     }
 
-    void OnCollisionExit(Collision coll)
-    {
-        if (coll.gameObject.tag == "Floor")
-            m_grounded = false;
-        if(coll.gameObject.tag == "Wall")
-        {
-            if (m_collidingLeft)
-                m_collidingLeft = false;
-            if (m_collidingRight)
-                m_collidingRight = false;
-        }
-    }
-	
-	// Update is called once per frame
+    //------------------------------------------FIXED_UPDATE------------------------------------------------
 	void FixedUpdate () {
         if (_canMove)
         {
@@ -110,14 +78,18 @@ public class PlayerMovement : MonoBehaviour {
         }
 	}
 
+    //------------------------------------------METHODS-----------------------------------------------------
 
+    /// <summary>
+    /// 
+    /// </summary>
     void SolidMovement()
     {
         ControlSolidMovement();
-        if (Input.GetKey(KeyCode.Space) && m_grounded)//Jump
+        if (Input.GetKey(KeyCode.Space) && m_grounded && !_jumped)//Jump
         {
             m_rg.AddForce(new Vector3(0.0f, m_jumpForce, 0.0f));
-            m_jumping = true;
+            _jumped = true;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) && !m_collidingRight && MoveInAir())//Right
@@ -132,6 +104,9 @@ public class PlayerMovement : MonoBehaviour {
             //transform.position += new Vector3(-m_velocitySolid * Time.deltaTime, 0.0f, 0.0f);
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     void ControlSolidMovement()
     {
         float currentVelocity = m_rg.velocity.x;
@@ -141,21 +116,27 @@ public class PlayerMovement : MonoBehaviour {
             m_rg.velocity = new Vector3(-m_maxVelocitySolid, m_rg.velocity.y, m_rg.velocity.z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void WaterMovement()
     {
         ControlWaterMovement();
-        if (Input.GetKey(KeyCode.RightArrow) && !m_collidingRight && MoveInAir())//Right
+        if (Input.GetKey(KeyCode.RightArrow) && MoveInAir())//Right
         {
             m_rg.AddForce(new Vector3(m_velocityWater, 0.0f, 0.0f));
             //transform.position += new Vector3(m_velocityWater * Time.deltaTime, 0.0f, 0.0f);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow) && !m_collidingLeft && MoveInAir())//Left
+        if (Input.GetKey(KeyCode.LeftArrow) && MoveInAir())//Left
         {
             m_rg.AddForce(new Vector3(-m_velocityWater, 0.0f, 0.0f));
             //transform.position += new Vector3(-m_velocityWater * Time.deltaTime, 0.0f, 0.0f);
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     void ControlWaterMovement()
     { 
             float currentVelocity = m_rg.velocity.x;
@@ -165,6 +146,9 @@ public class PlayerMovement : MonoBehaviour {
                 m_rg.velocity = new Vector3(-m_maxVelocityWater, m_rg.velocity.y, m_rg.velocity.z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void GasMovement()
     {
         ControlGasMovement();
@@ -183,6 +167,9 @@ public class PlayerMovement : MonoBehaviour {
             m_velocityGas -= m_StepVelocityGas;
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     void ControlGasMovement()
     {
         float currentVelocity = m_rg.velocity.x;
@@ -192,40 +179,73 @@ public class PlayerMovement : MonoBehaviour {
             m_rg.velocity = new Vector3(-m_maxVelocityGas, m_rg.velocity.y, m_rg.velocity.z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void resetGasVelocity()
     {
         m_velocityGas = 0.0f;
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="vel">
+    /// 
+    /// </param>
     void setGasVelocity(float vel)
     {
         m_velocityGas = vel;
     }
 
+    /// <summary>   MoveInAir()
+    ///     So this method is used if you want or not to move while in the air.
+    /// </summary>
+    /// <returns>
+    ///     It returns true if you can move, false if not.
+    /// </returns>
     bool MoveInAir()
     {
         if (m_moveInAir)
             return true;
         else
         {
-            if (m_jumping)
+            if (!m_grounded)
                 return false;
             else
                 return true;
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="var">
+    /// 
+    /// </param>
     void PlayerMoves(bool var)
     {
         _canMove = var;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="obj">
+    /// 
+    /// </param>
     void SetCarriedObject(GameObject obj)
     {
         m_carriedObject = obj;
     }
+    /// <summary>
+    /// 
+    /// </summary>
     void DropObject()
     {
         m_carriedObject = null;
     }
+    /// <summary>
+    /// 
+    /// </summary>
     void MoveCarriedObject()
     {
         if (m_carriedObject != null)
@@ -233,5 +253,53 @@ public class PlayerMovement : MonoBehaviour {
             m_carriedObject.transform.position =
                 this.GetComponent<Transform>().position + new Vector3(0, 1.1f, 0);
         }
+    }
+
+    /// <summary>   CollisionPlayerManager()
+    ///     This method is used to know if the player is colliding left, right and down.
+    ///     If he is colliding down he can jump. If colliding left or right he can't move
+    ///     in that direction.
+    ///     To achive this, we are going to use Raycast
+    /// </summary>
+    /// <mejora>
+    ///     Se pueden añadir mas ray cast, ya que en las cuestas hay un fallo porque el rayo no llega a tocarla.
+    ///     Se podrían hacer varios rayos separados entre si una cierta distancia hacia abajo. Se consigue que abarque
+    ///     más área.
+    /// </mejora>
+
+    void CollisionPlayerManager()
+    {
+        RaycastHit hitLeft = new RaycastHit();
+        RaycastHit hitRight = new RaycastHit();
+        Ray rayDown = new Ray(transform.position, new Vector3(0.0f, -1.0f, 0.0f)); Debug.DrawRay(transform.position, new Vector3(0.0f, -1.0f, 0.0f));
+        Ray rayLeft = new Ray(transform.position, new Vector3(-1.0f, 0.0f, 0.0f)); Debug.DrawRay(transform.position, new Vector3(-1.0f, 0.0f, 0.0f));
+        Ray rayRight = new Ray(transform.position, new Vector3(1.0f, 0.0f, 0.0f)); Debug.DrawRay(transform.position, new Vector3(1.0f, 0.0f, 0.0f));
+        if (Physics.Raycast(rayDown, _offSet + transform.localScale.y / 2)) //Raycast down
+        {
+            if (!_jumped)
+                m_grounded = true;
+        }
+        else
+        {
+            m_grounded = false;
+            _jumped = false;
+        }
+        if(Physics.Raycast(rayLeft, out hitLeft, (transform.localScale.x / 2) + _offSet)) //Raycast Left
+        {
+            m_collidingLeft = true;
+        }
+        else
+        {
+            m_collidingLeft = false;
+        }
+        if (Physics.Raycast(rayRight, out hitRight,  (transform.localScale.x / 2) + _offSet)) //Raycast Right
+        {
+            m_collidingRight = true;
+        }
+        else
+        {
+            m_collidingRight = false;
+        }
+
     }
 }

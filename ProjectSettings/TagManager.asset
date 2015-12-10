@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - BreakableWall
   - GameManager
+  - Rack
   layers:
   - Default
   - TransparentFX
