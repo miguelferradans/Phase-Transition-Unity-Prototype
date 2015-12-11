@@ -1,0 +1,123 @@
+Initialize engine version: 5.2.2f1 (3757309da7e7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 5000 (ID=0xa26)
+    Vendor:   Intel
+    VRAM:     128 MB
+Default GameObject BitMask: Water already registered
+ 
+(Filename:  Line: 98)
+
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.255 seconds
+desktop: 2160x1440 59Hz; virtual: 2160x1440 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Esteban\Documents\GitHub\Phase-Transition-Unity-Prototype\prototype_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 1b80 -> priority: 1 
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.654813 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 917.
+Total: 0.494442 ms (FindLiveObjects: 0.065598 ms CreateObjectMapping: 0.045517 ms MarkObjects: 0.369047 ms  DeleteObjects: 0.013387 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.165725 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 919.
+Total: 1.004504 ms (FindLiveObjects: 0.121379 ms CreateObjectMapping: 0.083448 ms MarkObjects: 0.775132 ms  DeleteObjects: 0.023204 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.644508 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 919.
+Total: 1.098662 ms (FindLiveObjects: 0.123164 ms CreateObjectMapping: 0.082555 ms MarkObjects: 0.868845 ms  DeleteObjects: 0.023204 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.217364 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 919.
+Total: 1.197729 ms (FindLiveObjects: 0.142799 ms CreateObjectMapping: 0.060689 ms MarkObjects: 0.952293 ms  DeleteObjects: 0.039716 ms)
+
+Corutine
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Corutine
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Player
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.746210 ms
+
+Unloading 40 unused Assets to reduce memory usage. Loaded Objects now: 243.
+Total: 1.630144 ms (FindLiveObjects: 0.046856 ms CreateObjectMapping: 0.050872 ms MarkObjects: 0.743003 ms  DeleteObjects: 0.787627 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.475700 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 558.
+Total: 0.448925 ms (FindLiveObjects: 0.047748 ms CreateObjectMapping: 0.028113 ms MarkObjects: 0.359229 ms  DeleteObjects: 0.012048 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.981787 ms
+
+Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 243.
+Total: 2.128157 ms (FindLiveObjects: 0.063813 ms CreateObjectMapping: 0.087464 ms MarkObjects: 1.010305 ms  DeleteObjects: 0.964788 ms)
+
