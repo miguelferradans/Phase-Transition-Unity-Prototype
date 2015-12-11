@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Gas")]
     [SerializeField]
-    private float m_velocityGas = 0.0f;
+    private Vector3 m_velocityGas;
     [SerializeField]
     private float m_maxVelocityGas = 3.0f;
     [SerializeField]
@@ -154,17 +154,17 @@ public class PlayerMovement : MonoBehaviour {
         ControlGasMovement();
         m_rg.AddForce(Physics.gravity*-m_rg.mass*m_UpwardsGravityModifier);
 
-        if (m_velocityGas != 0)
-            m_rg.AddRelativeForce(new Vector3(m_velocityGas, 0.0f, 0.0f));
+        if (m_velocityGas != Vector3.zero)
+            m_rg.AddRelativeForce(m_velocityGas);
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !m_collidingRight && MoveInAir() && (m_velocityGas <= m_maxRightVelocityGas))//Right
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !m_collidingRight && MoveInAir() && (m_velocityGas.x <= m_maxRightVelocityGas))//Right
         {
-            m_velocityGas += m_StepVelocityGas;
+            m_velocityGas.x += m_StepVelocityGas;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !m_collidingLeft && MoveInAir() && (m_velocityGas >= m_maxLeftVelocityGas))//Left
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !m_collidingLeft && MoveInAir() && (m_velocityGas.x >= m_maxLeftVelocityGas))//Left
         {
-            m_velocityGas -= m_StepVelocityGas;
+            m_velocityGas.x -= m_StepVelocityGas;
         }
     }
     /// <summary>
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     void resetGasVelocity()
     {
-        m_velocityGas = 0.0f;
+        m_velocityGas = Vector3.zero;
     }
     /// <summary>
     /// 
@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour {
     /// <param name="vel">
     /// 
     /// </param>
-    void setGasVelocity(float vel)
+    void setGasVelocity(Vector3 vel)
     {
         m_velocityGas = vel;
     }

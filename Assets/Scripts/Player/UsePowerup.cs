@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UsePowerup : MonoBehaviour {
 
@@ -21,6 +22,9 @@ public class UsePowerup : MonoBehaviour {
     private SphereCollider m_colliderExplosion = null;
     private TransformState m_playerState = null;
 
+    [SerializeField]
+    public Image m_powerUpImage;
+
 
     void Start()
     {
@@ -30,7 +34,7 @@ public class UsePowerup : MonoBehaviour {
         m_particlesExplosion = this.transform.Find("Explosive").GetComponent<ParticleSystem>();
         m_particlesExplosion.Stop();
         m_colliderExplosion = m_particlesExplosion.gameObject.GetComponent<SphereCollider>();
-
+        m_powerUpImage.enabled = false;
         m_playerState = transform.GetComponent<TransformState>();
     }
 	
@@ -109,9 +113,17 @@ public class UsePowerup : MonoBehaviour {
     /// </param>
     void SetPower(string power){
         if (power == "Poison")
+        {
             m_PoisonActive = true;
+            m_powerUpImage.enabled = true;
+            m_powerUpImage.color = Color.green;
+        }
         else if (power == "Explosive")
+        {
             m_ExplActive = true;
+            m_powerUpImage.enabled = true;
+            m_powerUpImage.color = Color.red;
+        }
         else if (power == "Corrosive")
             m_CorrosionActive = true;
     }
@@ -126,5 +138,6 @@ public class UsePowerup : MonoBehaviour {
         m_ExplActive = false;
         m_CorrosionActive = false;
         _usingPower = false;
+        m_powerUpImage.enabled = false;
     }
 }
