@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     void resetGasVelocity()
     {
+        Debug.Log("Reiniciando velocity gas");
         m_velocityGas = Vector3.zero;
     }
     /// <summary>
@@ -286,7 +287,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         if(Physics.Raycast(rayLeft, out hitLeft, (transform.localScale.x / 2) + _offSet)) //Raycast Left
         {
-            m_collidingLeft = true;
+            if (hitLeft.transform.tag != "Trigger")
+                m_collidingLeft = true;
         }
         else
         {
@@ -294,7 +296,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (Physics.Raycast(rayRight, out hitRight,  (transform.localScale.x / 2) + _offSet)) //Raycast Right
         {
-            m_collidingRight = true;
+            if (hitRight.transform.tag != "Trigger")
+                m_collidingRight = true;
         }
         else
         {

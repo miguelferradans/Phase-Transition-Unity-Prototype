@@ -85,6 +85,6 @@ public class EnemyIA : MonoBehaviour {
 
     void Kill(GameObject obj)
     {
-        obj.SetActive(false);
+        //obj.SetActive(false);
     }
 }

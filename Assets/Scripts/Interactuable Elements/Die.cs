@@ -13,7 +13,7 @@ public class Die : MonoBehaviour {
                 InformationLevel manager = FindObjectOfType<InformationLevel>();
                 manager.SendMessage("Restart");
             }
-            else if (playerPowers.m_PoisonActive || playerPowers.m_ExplActive)
+            else if (playerPowers.m_ActivePower == "Poison" || playerPowers.m_ActivePower == "Explosive")
             {
                 this.gameObject.SetActive(false);
             }

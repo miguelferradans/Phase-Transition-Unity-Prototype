@@ -4,11 +4,10 @@ using UnityEngine.UI;
 
 public class UsePowerup : MonoBehaviour {
 
-    [Header ("Booleans")]
-    public bool m_PoisonActive = false;
-    public bool m_ExplActive = false;
-    public bool m_CorrosionActive = false;
+    [Header ("Power Information")]
+    public string m_ActivePower;
     public bool _usingPower = false;
+    public bool _oneTimePower = false;
 
     [Header("Explosion")]
     [SerializeField]
@@ -24,6 +23,7 @@ public class UsePowerup : MonoBehaviour {
 
     [SerializeField]
     public Image m_powerUpImage;
+
 
 
     void Start()
@@ -42,20 +42,23 @@ public class UsePowerup : MonoBehaviour {
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (m_PoisonActive && !m_playerState.m_solid)
+            if (!m_playerState.m_solid)
             {
-                Poison();
-            }
-            else if (m_ExplActive && !m_playerState.m_solid)
-            {
-                Explosive();
-            }
-            else if (m_CorrosionActive && !m_playerState.m_solid)
-            {
-                Corrosive();
+                switch (m_ActivePower)
+                {
+                    case "Poison":
+                        Poison();
+                        break;
+                    case "Explosive":
+                        Explosive();
+                        break;
+                    case "StateTimeExtender":
+                        TimeExtender();
+                        break;
+                }
             }
         }
-        if (_usingPower && m_playerState.m_solid)
+        if (_usingPower && (m_playerState.m_solid || _oneTimePower))
         {
             DeletePowers();
         }
@@ -82,6 +85,7 @@ public class UsePowerup : MonoBehaviour {
         {
             m_particlesExplosion.Play();
             _usingPower = true;
+            _oneTimePower = true;
             Collider[] objectsInRange = Physics.OverlapSphere(transform.position, m_ExplosionRadius);
             foreach (Collider coll in objectsInRange)
             {
@@ -105,6 +109,16 @@ public class UsePowerup : MonoBehaviour {
         }
     }
 
+    void TimeExtender()
+    {
+        if (!_usingPower)
+        {
+            SendMessage("RecoverTime", SendMessageOptions.RequireReceiver);
+            _usingPower = true;
+            _oneTimePower = true;
+        }
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -112,20 +126,20 @@ public class UsePowerup : MonoBehaviour {
     /// 
     /// </param>
     void SetPower(string power){
-        if (power == "Poison")
+        m_ActivePower = power;
+        m_powerUpImage.enabled = true;
+        switch (m_ActivePower)
         {
-            m_PoisonActive = true;
-            m_powerUpImage.enabled = true;
-            m_powerUpImage.color = Color.green;
+            case "Poison":
+                m_powerUpImage.color = Color.green;
+                break;
+            case "Explosive":
+                m_powerUpImage.color = Color.red;
+                break;
+            case "StateTimeExtender":
+                m_powerUpImage.color = Color.blue;
+                break;
         }
-        else if (power == "Explosive")
-        {
-            m_ExplActive = true;
-            m_powerUpImage.enabled = true;
-            m_powerUpImage.color = Color.red;
-        }
-        else if (power == "Corrosive")
-            m_CorrosionActive = true;
     }
 
     /// <summary>
@@ -134,10 +148,9 @@ public class UsePowerup : MonoBehaviour {
     void DeletePowers()
     {
         m_particlesPoison.Stop();
-        m_PoisonActive = false;
-        m_ExplActive = false;
-        m_CorrosionActive = false;
+        m_ActivePower = "";
         _usingPower = false;
+        _oneTimePower = false;
         m_powerUpImage.enabled = false;
     }
 }

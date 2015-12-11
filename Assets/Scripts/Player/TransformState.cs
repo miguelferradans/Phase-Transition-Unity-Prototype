@@ -91,6 +91,9 @@ public class TransformState : MonoBehaviour {
 
         if (m_canContinueTransformed == false)
         {
+            if (m_gas)
+                SendMessage("resetGasVelocity", SendMessageOptions.RequireReceiver);
+
             Solid();
             m_canContinueTransformed = true;
         }

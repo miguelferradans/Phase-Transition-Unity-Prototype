@@ -11,7 +11,7 @@ public class TimeCounter : MonoBehaviour
     private float _totalTime = 5f;
     [SerializeField]
     [Range(0.0f, 5.0f)]
-    private float _timeRemaining;
+    public float _timeRemaining;
     [SerializeField]
     private Slider _timeBar;
 
@@ -36,6 +36,7 @@ public class TimeCounter : MonoBehaviour
     /// <summary>   RecoverTime()
     ///     
     /// </summary>
+    /// 
     void RecoverTime()
     {
         _timeBar.value = _totalTime;

@@ -6,7 +6,7 @@ public class SetPowerUp : MonoBehaviour
     [System.Serializable]
     public enum powerUp
     {
-        Poison, Explosive, Corrosive
+        Poison, Explosive, Corrosive, StateTimeExtender
     }
 
     public powerUp m_power;
